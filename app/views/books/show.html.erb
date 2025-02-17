@@ -1,3 +1,10 @@
+<h1>User info</h1>
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <p>name<%= @user.name %></p>
+  <p>introduction<%= @user.introduction %></p>
+</div>
+
 <h1>New book</h1>
 <%= form_with model: @book do |f| %>
   <h4>Title</h4>
@@ -9,8 +16,12 @@
 
 <h1>Book detail</h1>
 <div>
-  <%= image_tag 'no_image.jpg' %>
-  <%= @book.user.name %>
+  <%= link_to user_path(@book.user.id) do %>
+     <%= image_tag 'no_image.jpg' %>
+  <% end %>   
+  <%= link_to user_path(@book.user.id) do %>  
+     <%= @book.user.name %>
+  <% end %>    
   <%= @book.title %>
   <%= @book.body %>
   <% if @book.user == current_user %>
