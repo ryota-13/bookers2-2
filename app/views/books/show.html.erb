@@ -28,9 +28,7 @@
   <%= @book.title %>
   <%= @book.body %>
   <% if @book.user == current_user %>
-     <p><%= link_to "edit", edit_book_path(@book) %></p>
-  <% end %>
-  <% if @book.user == current_user %>
+     <p><%= link_to "Edit", edit_book_path(@book) %></p>
      <p><%= link_to "Destroy", book_path(@book), method: :delete %></p>
   <% end %>
 </div>
