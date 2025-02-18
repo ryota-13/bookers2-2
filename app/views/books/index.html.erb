@@ -3,6 +3,9 @@
   <%= image_tag @user.get_profile_image(100,100) %>
   <p>name<%= @user.name %></p>
   <p>introduction<%= @user.introduction %></p>
+  <% if @user == current_user %>
+    <p><%= link_to "edit", edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 <h1>New book</h1>
@@ -18,7 +21,7 @@
 <% @books.each do |book| %>
     <div>
       <%= link_to user_path(book.user.id) do %>
-        <%= image_tag 'no_image.jpg' %>
+        <%= image_tag book.user.get_profile_image(100,100) %>
       <% end %>  
       <p>Title :
         <%= link_to book_path(book.id) do %>
