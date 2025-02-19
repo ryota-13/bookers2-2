@@ -6,9 +6,14 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy  
   
-  
   has_one_attached :profile_image
 
+  validates :name, presence: { message: "Name is too short (minimum is 2 characters)" }, 
+                   uniqueness: true, 
+                   length: { in: 2..20, message: "Name is too long (maximum is 20 characters)" }
+
+  validates :introduction, length: { maximum: 50, message: "Introduction is too long (maximum is 50 characters)" }
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
