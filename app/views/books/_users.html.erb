@@ -1,19 +1,31 @@
 
   <h1>User info</h1>
-  <div>
-    <%= image_tag user.get_profile_image(100,100) %>
-    <p>name<%= user.name %></p>
-    <p>introduction<%= user.introduction %></p>
-    <% if user == current_user %>
-      <p><%= link_to "edit", edit_user_path(user) %></p>
-    <% end %>
-  </div>
+  <%= image_tag user.get_profile_image(100,100) %>
+  <table class="table">
+    <thead>
+      <tr></tr>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr> 
+    </thead>
+  </table> 
+
+  <% if user == current_user %>
+    <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block" do %>
+      <i class="fa-duotone fa-solid fa-user-gear"></i> 
+    <% end %>  
+  <% end %> 
 
   <h1>New book</h1>
   <%= form_with model: book do |f| %>
-    <h4>Title</h4>
+    <p>Title</p>
     <%= f.text_field :title %>
-    <h4>Opinion</h4>
+    <p>Opinion</p>
     <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
+    <%= f.submit 'Create Book', class:"btn btn-success" %>
   <% end %>
